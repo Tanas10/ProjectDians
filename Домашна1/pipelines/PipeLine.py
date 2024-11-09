@@ -1,6 +1,6 @@
-from Домашна1.filters.Filter_1 import *
-from Домашна1.filters.Filter_2 import *
-from Домашна1.filters.Filter_3 import *
+from filters.Filter_1 import *
+from filters.Filter_2 import *
+from filters.Filter_3 import *
 
 class ScrapingPipeline:
     def __init__(self):

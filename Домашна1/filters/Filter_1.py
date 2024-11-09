@@ -1,4 +1,4 @@
-from Домашна1.filters.FilterData import *
+from filters.FilterData import *
 
 class Filter1CodeDownload(DataFilter):
     def apply(self, date):

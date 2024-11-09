@@ -1,4 +1,4 @@
-from Домашна1.filters.FilterData import *
+from filters.FilterData import *
 
 class DataCompletenessDataFilter(DataFilter):
     def apply(self, company_dates):

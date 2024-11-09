@@ -1,6 +1,6 @@
 import os.path
 
-from Домашна1.filters.FilterData import *
+from filters.FilterData import *
 
 class Filter2DataSaver(DataFilter):
     def process_company_chunk(self, companies_subset):

@@ -3,9 +3,10 @@ from pipelines.PipeLine import *
 
 if __name__ == '__main__':
 
-    print("Старт")
+    print("Start")
     time_now = time.time()
+    url = 'https://www.mse.mk/mk/stats/symbolhistory/kmb'
     pipeline = ScrapingPipeline()
     filtered_data = pipeline.execute([])
     time_taken = time.time() - time_now
-    print("Апликацијата завши во {:.2f} секунди".format(time_taken))
+    print("Potrebno vreme {:.2f} sekundi".format(time_taken))

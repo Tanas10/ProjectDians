@@ -7,7 +7,7 @@ class ScrapingPipeline:
         self.filters = []
         self.filters.append(Filter1CodeDownload())
         self.filters.append(Filter2DataSaver())
-        self.filters.append(DataCompletenessDataFilter())
+        self.filters.append(DataCompletenessFilter3())
 
     def add_filter(self, filter):
         self.filters.append(filter)

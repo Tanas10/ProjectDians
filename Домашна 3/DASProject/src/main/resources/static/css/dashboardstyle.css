@@ -1,0 +1,151 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+header nav a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: #333;
+}
+
+main {
+    padding: 2em;
+}
+
+.search-bar h1 {
+    margin-bottom: 1em;
+}
+
+.filters {
+    display: flex;
+    gap: 1em;
+}
+
+.filters input, .filters button {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.color-green{
+font-weight: bold;
+    color:#3B8D76;
+}
+.filters button {
+    background: #3B8D76;
+    color: white;
+    cursor: pointer;
+}
+
+.charts {
+    margin: 2em 0;
+}
+
+.chart {
+    margin-bottom: 2em;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.center-div{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-placeholder {
+    background: #f9f9f9;
+    border: 1px dashed #ccc;
+    padding: 2em;
+
+    text-align: center;
+}
+
+.summary {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+.card {
+    padding: 1em;
+    background: #f4f4f4;
+    text-align: center;
+    border-radius: 10px;
+}
+
+footer {
+    padding: 1em;
+    background: #f4f4f4;
+    text-align: center;
+    margin-top: 2em;
+}
+
+
+
+
+
+.custom-select {
+
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    color: #495057;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.custom-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+
+.custom-select option[value=""][disabled][selected] {
+    color: #6c757d;
+}
+
+
+.custom-select::after {
+
+
+    right: 12px;
+
+    pointer-events: none;
+    color: #6c757d;
+}
+
+
+.custom-select option {
+    background-color: #ffffff;
+    color: #495057;
+    padding: 10px;
+}
+
+
+.custom-select option:hover {
+    background-color: #f1f1f1;
+}

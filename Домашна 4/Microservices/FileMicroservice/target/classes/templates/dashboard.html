@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockPipeMK Dashboard</title>
+    <link rel="stylesheet" href="../static/css/dashboardstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="../static/images/logo.png" alt="Logo" width="300px" height="100px">
+    </div>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="about.html">About</a>
+    </nav>
+</header>
+<main>
+
+    <section class="search-bar">
+        <div class="center-div">
+            <h1 class="color-green">Dashboard </h1>
+            <div class="filters">
+                <select id="code" name="code" required class="custom-select">
+                    <option value="ALK" selected>ALK</option>
+                </select>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="charts" >
+        <div class="center-div">
+            <div class="chart">
+                <h3>Stock Prices</h3>
+                <!--                <p th:text="${indicator}"></p>-->
+                <div class="chart-placeholder center-div">
+                    <canvas id="lineChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="center-div">
+
+
+            <div class="chart-row" style="display: none">
+                <div class="chart-placeholder">[Chart Placeholder]
+                    <img src="../static/images/dashboardimage2.png" height="436" width="624"/>
+                </div>
+
+                <div class="chart-placeholder">[Chart Placeholder]
+                    <img src="../static/images/dashboardimage3.png" height="436" width="624"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="center-div" style="display: none">
+        <img src="../static/images/dashboardimage4.png" height="489" width="1281"/>
+    </div>
+    <section class="summary card"></section>
+
+</main>
+
+<footer>
+    <div class="color-green">StockPipeMK</div>
+    <nav>
+        <a href="#">Topic</a>
+        <a href="#">Page</a>
+        <a href="#">Page</a>
+    </nav>
+</footer>
+</body>
+<script>
+    let chartInstance; // Store the chart instance globally
+
+    // Function to fetch data from the API
+    async function fetchData(filename) {
+        const response = await fetch(`http://localhost:8082/api/stocks/${filename}`);
+        const jsonData = await response.json();
+
+        // Extract data for the chart and reverse them
+        const labels = jsonData.map(data => data.date).reverse();
+        const prices = jsonData.map(data => data.priceOfLastTransaction).reverse();
+
+        // Reset the chart
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+
+        // Create a new chart
+        const ctx = document.getElementById('lineChart').getContext('2d');
+        chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Price of Last Transaction',
+                        data: prices,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (in Denars)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    async function fetchTechnicalIndicators(filename) {
+        const response = await fetch(`http://localhost:8082/api/indicators/${filename}`);
+        const technicalIndicators = await response.json();
+
+        const summarySection = document.querySelector('.summary');
+        summarySection.innerHTML = Object.entries(technicalIndicators).map(([timeframe, indicators]) => {
+            return `
+          <div>
+            <h3>${timeframe}</h3>
+            <ul>
+              ${Object.entries(indicators).map(([indicator, value]) => `<li>${indicator}: ${value}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        }).join('');
+    }
+
+    async function loadOptions() {
+        const selectElement = document.getElementById('code');
+
+        try {
+            const response = await fetch('http://localhost:8081/api/files');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const options = await response.json();
+
+            // Populate new options
+            options.forEach(optionValue => {
+                if (optionValue != 'ALK') {
+                    const option = document.createElement('option');
+                    option.value = optionValue;
+                    option.textContent = optionValue;
+                    selectElement.appendChild(option);
+                }
+            });
+        } catch (error) {
+            console.error('Error loading options:', error);
+            selectElement.innerHTML = '<option value="" disabled selected>Error loading options</option>';
+        }
+    }
+
+    // Add event listener to the select element
+    document.getElementById('code').addEventListener('change', (event) => {
+        const selectedFilename = event.target.value;
+        fetchData(selectedFilename);
+        fetchTechnicalIndicators(selectedFilename);
+    });
+
+    // Fetch data initially with the first file
+    loadOptions();
+    fetchData('ALK');
+    fetchTechnicalIndicators('ALK');
+</script>
+</html>

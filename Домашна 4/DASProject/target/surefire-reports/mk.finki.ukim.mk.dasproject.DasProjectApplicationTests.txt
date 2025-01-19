@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mk.finki.ukim.mk.dasproject.DasProjectApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.999 s -- in mk.finki.ukim.mk.dasproject.DasProjectApplicationTests

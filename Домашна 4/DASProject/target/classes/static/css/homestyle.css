@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 1rem;
+}
+
+.container {
+    text-align: left;
+    padding: 3rem 2rem;
+    width: 700px;
+}
+.container2 {
+    text-align: justify;
+    padding: 3rem 2rem;
+
+}
+
+h1 {
+    color: #3B8D76;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #3B8D76;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.center-div{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chart {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+footer {
+    background-color: #f9f9f9;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+footer .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: left;
+}
+
+.footer-grid div {
+    color: #666;
+}
+
+footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+footer .social-icons a {
+    color: #666;
+    text-decoration: none;
+    font-size: 1.5rem;
+}

@@ -78,7 +78,7 @@
 
     // Function to fetch data from the API
     async function fetchData(filename) {
-        const response = await fetch(`https://das-app-docker.calmmoss-87004482.northeurope.azurecontainerapps.io/api/stocks/${filename}`);
+        const response = await fetch(`https://das-group-app.wonderfulsand-54b7b33b.australiaeast.azurecontainerapps.io/api/stocks/${filename}`);
         const jsonData = await response.json();
 
         // Extract data for the chart and reverse them
@@ -137,7 +137,7 @@
     }
 
     async function fetchTechnicalIndicators(filename) {
-        const response = await fetch(`https://das-app-docker.calmmoss-87004482.northeurope.azurecontainerapps.io/api/indicators/${filename}`);
+        const response = await fetch(`https://das-group-app.wonderfulsand-54b7b33b.australiaeast.azurecontainerapps.io/api/indicators/${filename}`);
         const technicalIndicators = await response.json();
 
         const summarySection = document.querySelector('.summary');
@@ -157,7 +157,7 @@
         const selectElement = document.getElementById('code');
 
         try {
-            const response = await fetch('https://das-app-docker.calmmoss-87004482.northeurope.azurecontainerapps.io/api/files');
+            const response = await fetch('https://das-group-app.wonderfulsand-54b7b33b.australiaeast.azurecontainerapps.io/api/files');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
